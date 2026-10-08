@@ -5,10 +5,12 @@ type PropsType = {
   id: string
   title: string
   isPublish: boolean
+  deleteFn?: (id: string) => void
+  publishFn?: (id: string) => void
 }
 
 export const QuestionCard = (props: PropsType) => {
-  const { id, title, isPublish } = props
+  const { id, title, isPublish, deleteFn, publishFn } = props
   const edit = (id: string) => {
     console.log('edit', id)
   }
@@ -29,6 +31,10 @@ export const QuestionCard = (props: PropsType) => {
       >
         编辑
       </button>
+      &nbsp;
+      <button onClick={() => deleteFn?.(id)}>删除</button>
+      &nbsp;
+      <button onClick={() => publishFn?.(id)}>发布</button>
     </div>
   )
 }
