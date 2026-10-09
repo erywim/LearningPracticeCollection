@@ -1,0 +1,14 @@
+.list-item{
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 16px;
+    
+    //sass 允许使用嵌套样式
+    .publish{
+        border-color: green;
+    }
+}
+
+.publish{
+    border-color: green;
+}

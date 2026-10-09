@@ -1,5 +1,7 @@
+import classNames from 'classnames'
 import '../List1.css'
 import React from 'react'
+import styles from './QuestionCard.module.scss'
 
 type PropsType = {
   id: string
@@ -14,12 +16,16 @@ export const QuestionCard = (props: PropsType) => {
   const edit = (id: string) => {
     console.log('edit', id)
   }
+  //   const itemClass = classNames({ [styles['list-item']]: true, [styles.publish]: isPublish })
+  const itemClass1 = classNames(styles['list-item'], { [styles.publish]: isPublish })
   return (
-    <div key={id} className="list-item">
+    <div key={id} className={itemClass1}>
       <strong>{title}</strong>
       &nbsp;
       {isPublish ? (
-        <span style={{ color: 'green' }}>已发布</span>
+        <span className={styles.publish} style={{ color: 'green' }}>
+          已发布
+        </span>
       ) : (
         <span style={{ color: 'red' }}>未发布</span>
       )}

@@ -4,9 +4,9 @@ import { ImmerDemo, ImmerArrDemo } from './immerDemo'
 import { UseMemoDemo } from './UserMemoDemo'
 
 function App() {
-  // return <List2 />
+  return <List2 />
   // return <ImmerArrDemo />
-  return <UseMemoDemo />
+  // return <UseMemoDemo />
 }
 
 export default App
