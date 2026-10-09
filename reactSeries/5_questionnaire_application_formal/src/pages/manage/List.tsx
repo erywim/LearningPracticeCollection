@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import styles from './List.module.scss'
-import { QuestionCard } from '../components/QuestionCard'
+import { QuestionCard } from '../../components/QuestionCard'
+import { useSearchParams } from 'react-router-dom'
 
 const rawQuestionList = [
   {
@@ -40,7 +41,7 @@ const rawQuestionList = [
 export const List = () => {
   //问卷列表数据
   const [questionList, setQuestionList] = useState(rawQuestionList)
-
+  
   return (
     <>
       <div className={styles.header}>
@@ -55,7 +56,7 @@ export const List = () => {
           return <QuestionCard key={id} {...item} />
         })}
       </div>
-      <div className={styles.footer}>footer</div>
+      <div className={styles.footer}>list page footer</div>
     </>
   )
 }

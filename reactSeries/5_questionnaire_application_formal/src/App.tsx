@@ -1,17 +1,8 @@
+import { RouterProvider } from 'react-router-dom'
 import './App.css'
-import { List } from './pages/List'
-
+import routerConfig from './router/index'
 function App() {
-  const a = 123
-  console.log(a)
-  return (
-    <>
-      <div className="App">
-        <h1>问卷 init</h1>
-        <List />
-      </div>
-    </>
-  )
+  return <RouterProvider router={routerConfig} />
 }
 
 export default App
