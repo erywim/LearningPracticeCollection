@@ -1,4 +1,13 @@
+import { Link, useNavigate } from 'react-router-dom'
 import styles from './QuestionCard.module.scss'
+import { Button, Divider, Space, Tag } from 'antd'
+import {
+  CopyOutlined,
+  DeleteOutlined,
+  EditOutlined,
+  LineChartOutlined,
+  StarOutlined,
+} from '@ant-design/icons'
 
 type PropsType = {
   id: string
@@ -10,30 +19,58 @@ type PropsType = {
 }
 
 export const QuestionCard = (props: PropsType) => {
-  const { id, title, isPublish, answerCount, createAt } = props
+  const nav = useNavigate()
+  const { id, title, isPublish, answerCount, createAt, isStar } = props
   return (
     <div className={styles.container}>
       <div className={styles.title}>
         <div className={styles.left}>
-          <a href="#">{title}</a>
+          <Link to={isPublish ? `/question/stat/${id}` : `/question/edit/${id}`}>
+            <Space>
+              {isStar && <StarOutlined style={{ color: 'red' }} />}
+              {title}
+            </Space>
+          </Link>
         </div>
-        <div className={styles.right}>
-          {isPublish ? <span style={{ color: 'green' }}>已发布</span> : <span>未发布</span>}
-          &nbsp;
+        <Space className={styles.right}>
+          {isPublish ? <Tag color="processing">已发布</Tag> : <Tag>未发布</Tag>}
           <span>答卷:{answerCount}</span>
-          &nbsp;
           <span>{createAt}</span>
-        </div>
+        </Space>
       </div>
+      <Divider style={{ margin: '12px' }} />
       <div className={styles['button-container']}>
-        <div className={styles.left}>
-          <button>编辑问卷</button>
-          <button>数据统计</button>
-        </div>
+        <Space className={styles.left}>
+          <Button
+            size="small"
+            onClick={() => nav(`/question/edit/${id}`)}
+            icon={<EditOutlined />}
+            type="text"
+          >
+            编辑问卷
+          </Button>
+          <Button
+            size="small"
+            onClick={() => nav(`/question/stat/${id}`)}
+            icon={<LineChartOutlined />}
+            type="text"
+            disabled={!isPublish}
+          >
+            数据统计
+          </Button>
+        </Space>
         <div className={styles.right}>
-          <button>标星</button>
-          <button>复制</button>
-          <button>删除</button>
+          <Space>
+            <Button size="small" type="text" icon={<StarOutlined />}>
+              {isStar ? '取消标星' : '标星'}
+            </Button>
+            <Button size="small" type="text" icon={<CopyOutlined />}>
+              复制
+            </Button>
+            <Button size="small" type="text" icon={<DeleteOutlined />}>
+              删除
+            </Button>
+          </Space>
         </div>
       </div>
     </div>

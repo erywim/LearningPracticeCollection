@@ -1,7 +1,6 @@
 import { useState } from 'react'
-import styles from './List.module.scss'
+import styles from './common.module.scss'
 import { QuestionCard } from '../../components/QuestionCard'
-import { useSearchParams } from 'react-router-dom'
 
 const rawQuestionList = [
   {
@@ -41,7 +40,7 @@ const rawQuestionList = [
 export const List = () => {
   //问卷列表数据
   const [questionList, setQuestionList] = useState(rawQuestionList)
-  
+
   return (
     <>
       <div className={styles.header}>
@@ -51,10 +50,11 @@ export const List = () => {
         <div className={styles.right}> (搜索) </div>
       </div>
       <div className={styles.content}>
-        {questionList.map(item => {
-          const { id } = item
-          return <QuestionCard key={id} {...item} />
-        })}
+        {questionList.length > 0 &&
+          questionList.map(item => {
+            const { id } = item
+            return <QuestionCard key={id} {...item} />
+          })}
       </div>
       <div className={styles.footer}>list page footer</div>
     </>
