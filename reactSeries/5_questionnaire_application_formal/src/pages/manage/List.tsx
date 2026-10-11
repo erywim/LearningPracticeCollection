@@ -15,7 +15,7 @@ const rawQuestionList = [
     id: 'q2',
     title: '问卷2',
     isPublish: true,
-    isStar: false,
+    isStar: true,
     answerCount: 56,
     createAt: '3月11日 12:34',
   },
