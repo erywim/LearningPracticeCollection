@@ -2,6 +2,7 @@ import { useState } from 'react'
 import styles from './common.module.scss'
 import { QuestionCard } from '../../components/QuestionCard'
 import { Empty, Table, Typography, Tag, Button, Space, Modal, message } from 'antd'
+import { ListSearch } from '../../components/ListSearch'
 
 const rawQuestionList = [
   {
@@ -96,7 +97,9 @@ export const Trash = () => {
         <div className={styles.left}>
           <Title level={3}>回收站</Title>
         </div>
-        <div className={styles.right}> (搜索) </div>
+        <div className={styles.right}>
+          <ListSearch />
+        </div>
       </div>
       <div className={styles.content}>
         {questionList.length == 0 && <Empty description="暂无数据" />}
